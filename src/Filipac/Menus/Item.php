@@ -1,12 +1,12 @@
 <?php
-namespace Caffeinated\Menus;
+namespace Filipac\Menus;
 
 use Illuminate\Support\Facades\Request;
 
 class Item
 {
 	/**
-	 * @var \Caffeinated\Menus\Builder
+	 * @var \Filipac\Menus\Builder
 	 */
 	protected $builder;
 
@@ -24,6 +24,11 @@ class Item
 	 * @var string
 	 */
 	public $slug;
+
+    /**
+     * @var float
+     */
+    public $order;
 
 	/**
 	 * @var array
@@ -48,7 +53,7 @@ class Item
 	/**
 	 * Constructor.
 	 *
-	 * @param  \Caffeinated\Menus\Builder  $builder
+	 * @param  \Filipac\Menus\Builder  $builder
 	 * @param  int                        $id
 	 * @param  string                     $title
 	 * @param  array|string               $options
@@ -59,7 +64,9 @@ class Item
 		$this->id         = $id;
 		$this->title      = $title;
 		$this->slug       = camel_case($title);
-		$this->attributes = $this->builder->extractAttributes($options);
+        $options = array_merge(['order' => 21], $options);
+		$this->attributes = $this->builder->extractAttributes(array_except($options, 'order'));
+        $this->order = $options['order'];
 		$this->parent     = (is_array($options) and isset($options['parent'])) ? $options['parent'] : null;
 
 		$this->configureLink($options);
@@ -100,7 +107,7 @@ class Item
 	 *
 	 * @param  string        $title
 	 * @param  array|string  $options
-	 * @return \Caffeinated\Menus\Item
+	 * @return \Filipac\Menus\Item
 	 */
 	public function add($title, $options = '')
 	{
@@ -177,7 +184,7 @@ class Item
 	 * Prepends HTML to the item.
 	 *
 	 * @param  string $html
-	 * @return \Caffeinated\Menus\Item
+	 * @return \Filipac\Menus\Item
 	 */
 	public function prepend($html)
 	{
@@ -190,7 +197,7 @@ class Item
 	 * Appends HTML to the item.
 	 *
 	 * @param  string $html
-	 * @return \Caffeinated\Menus\Item
+	 * @return \Filipac\Menus\Item
 	 */
 	public function append($html)
 	{
@@ -204,7 +211,7 @@ class Item
 	 *
 	 * @param  string  $icon
 	 * @param  string  $type  Can be either "fontawesome" or "glyphicon"
-	 * @return \Caffeinated\Menus\Item
+	 * @return \Filipac\Menus\Item
 	 */
 	public function icon($icon, $type = 'fontawesome')
 	{
@@ -273,7 +280,7 @@ class Item
 	/**
 	 * Returns all children underneath the menu item.
 	 *
-	 * @return \Caffeinated\Menus\Collection
+	 * @return \Filipac\Menus\Collection
 	 */
 	public function children()
 	{
@@ -284,7 +291,7 @@ class Item
 	 * Set or get an item's metadata.
 	 *
 	 * @param  mixed
-	 * @return string|\Caffeinated\Menus\Item
+	 * @return string|\Filipac\Menus\Item
 	 */
 	public function data()
 	{

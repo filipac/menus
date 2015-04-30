@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Menus;
+namespace Filipac\Menus;
 
 class Link
 {
@@ -32,7 +32,7 @@ class Link
 	 * Set the link's href property.
 	 *
 	 * @param  string  $href
-	 * @return \Caffeinated\Menus\Link
+	 * @return \Filipac\Menus\Link
 	 */
 	public function href($href)
 	{
@@ -44,7 +44,7 @@ class Link
 	/**
 	 * Make the link active.
 	 *
-	 * @return \Caffeinated\Menus\Link
+	 * @return \Filipac\Menus\Link
 	 */
 	public function active()
 	{
@@ -57,7 +57,7 @@ class Link
 	 * Add attributes to the link.
 	 *
 	 * @param  mixed
-	 * @return \Caffeinated\Menus\Link|string
+	 * @return \Filipac\Menus\Link|string
 	 */
 	public function attr()
 	{

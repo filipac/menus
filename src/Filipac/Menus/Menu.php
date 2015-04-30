@@ -1,15 +1,16 @@
 <?php
-namespace Caffeinated\Menus;
+namespace Filipac\Menus;
 
 use Collective\Html\HtmlBuilder;
 use Illuminate\Config\Repository;
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\Event;
 use Illuminate\View\Factory;
 
 class Menu
 {
 	/**
-	 * @var \Caffeinated\Menus\Collection
+	 * @var \Filipac\Menus\Collection
 	 */
 	protected $collection;
 
@@ -55,7 +56,7 @@ class Menu
 	 *
 	 * @param  string    $name
 	 * @param  callable  $callback
-	 * @return \Caffeinated\Menus\Builder
+	 * @return \Filipac\Menus\Builder
 	 */
 	public function make($name, $callback)
 	{
@@ -63,6 +64,10 @@ class Menu
 			$menu = new Builder($name, $this->loadConfig($name), $this->html, $this->url);
 
 			call_user_func($callback, $menu);
+
+            $data = ['menu' => &$menu];
+
+            Event::fire('menu.make.'.$name, $data);
 
 			$this->collection->put($name, $menu);
 
@@ -94,17 +99,17 @@ class Menu
 	 * Find and return the given menu collection.
 	 *
 	 * @param  string  $key
-	 * @return \Caffeinated\Menus\Collection
+	 * @return \Filipac\Menus\Collection
 	 */
 	public function get($key)
 	{
-		return $this->collection->get($key);
+		return $this->collection->get($key)->sortBy('order');
 	}
 
 	/**
 	 * Returns all menu instances.
 	 *
-	 * @return \Caffeinated\Menus\Collection
+	 * @return \Filipac\Menus\Collection
 	 */
 	public function all()
 	{

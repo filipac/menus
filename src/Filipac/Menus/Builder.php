@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Menus;
+namespace Filipac\Menus;
 
 use BadMethodCallException;
 use Collective\Html\HtmlBuilder;
@@ -35,7 +35,7 @@ class Builder
 	/**
 	 * @var array
 	 */
-	protected $reserved = ['route', 'action', 'url', 'prefix', 'parent', 'secure', 'raw'];
+	protected $reserved = ['route', 'action', 'url', 'prefix', 'parent', 'secure', 'raw','order'];
 
 	/**
 	 * @var int
@@ -69,11 +69,13 @@ class Builder
 	 *
 	 * @param  string  $title
 	 * @param  array|string   $options
-	 * @return \Caffeinated\Menus\Item
+	 * @return \Filipac\Menus\Item
 	 */
-	public function add($title, $options = '')
+	public function add($title, $id = null, $options = '')
 	{
-		$item = new Item($this, $this->id(), $title, $options);
+        $id = $id ?: $this->id();
+
+		$item = new Item($this, $id, $title, $options);
 
 		$this->items->push($item);
 
@@ -339,7 +341,7 @@ class Builder
 	 *
 	 * @param  string|callable  $sortBy
 	 * @param  string           $sortType
-	 * @return \Caffeinated\Menus\Builder
+	 * @return \Filipac\Menus\Builder
 	 */
 	public function sortBy($sortBy, $sortType = 'asc')
 	{
@@ -431,7 +433,7 @@ class Builder
 	 *
 	 * @param  string  $method
 	 * @param  array   $args
-	 * @return \Caffeinated\Menus\Item|bool
+	 * @return \Filipac\Menus\Item|bool
 	 */
 	public function __call($method, $args)
 	{
@@ -467,7 +469,7 @@ class Builder
 	 * Returns menu item by name.
 	 *
 	 * @param  string  $property
-	 * @return \Caffeinated\Menus\Item
+	 * @return \Filipac\Menus\Item
 	 */
 	public function __get($property)
 	{

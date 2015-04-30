@@ -1,5 +1,5 @@
 <?php
-namespace Caffeinated\Menus;
+namespace Filipac\Menus;
 
 use Illuminate\Support\ServiceProvider;
 
