@@ -7,7 +7,7 @@ Based on [Caffeinated/menus](https://github.com/caffeinated/menus)
 
 Easily create dynamic menus from within your Laravel 5 application.
 
-Filipac Menus is originally based off of [Caffeinated/menus](https://github.com/caffeinated/menus) package; a fork tu suit my needs. This has a primary focus on Laravel 5 support with PSR coding standards. If you're looking for a menu builder solution for Laravel 4, please go check out [Laravel Menu](https://github.com/lavary/laravel-menu)!
+Filipac Menus is originally based off of [Caffeinated/menus](https://github.com/caffeinated/menus) package; a fork to suit my needs. This has a primary focus on Laravel 5 support with PSR coding standards. If you're looking for a menu builder solution for Laravel 4, please go check out [Laravel Menu](https://github.com/lavary/laravel-menu)!
 
 The package follows the FIG standards PSR-1, PSR-2, and PSR-4 to ensure a high level of interoperability between shared PHP code. At the moment the package is not unit tested, but is planned to be covered later down the road.
 
