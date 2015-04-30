@@ -33,4 +33,4 @@ Once this operation is complete, simply add the service provider class and facad
 'Menu' => 'Filipac\Menus\Facades\Menu',
 ```
 
-And that's it! With your coffee in reach, start building out some awesome menus!
+And that's it! Start building out some awesome menus!
